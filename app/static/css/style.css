@@ -1,0 +1,12 @@
+body {
+    min-height: 100vh;
+    background-color: #ffffff;
+}
+
+main {
+    min-height: 75vh;
+}
+
+footer {
+    font-size: 0.9rem;
+}
