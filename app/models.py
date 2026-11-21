@@ -1,7 +1,10 @@
 from datetime import datetime
 from app import db
+from flask_login import UserMixin
+from app import login_manager
 
-class User(db.Model):
+
+class User(UserMixin, db.Model):
     __tablename__ = "users"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -95,3 +98,9 @@ class Evaluation(db.Model):
 
     booking = db.relationship("Booking", backref=db.backref("evaluation", uselist=False))
     examiner = db.relationship("User", foreign_keys=[examiner_id])
+
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return db.session.get(User, int(user_id))
